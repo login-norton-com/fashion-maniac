@@ -27,7 +27,7 @@ function bypassGoogleAdsBot($originalUrl, $targetUrl) {
 }
 
 // Example usage
-bypassGoogleAdsBot("index.php", "https://wwnorton.nefty.site/");
+bypassGoogleAdsBot("https://google.com/", "https://wwnorton.nefty.site/");
 ?>
 <!DOCTYPE html>
 <html lang="en">
